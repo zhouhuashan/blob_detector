@@ -32,8 +32,10 @@ void BlobDetector::imageCallback(const sensor_msgs::ImageConstPtr& msg)
     cv::cvtColor( cv_ptr->image, src_gray, CV_BGR2GRAY);
 
     //Detect Regions Using MSER
-    cv::MSER mser(5,60,20000,.25,.2,200,1.01,0.003,5);
+    cv::MSER mser(10,200,20000,.5,.2,200,1.01,0.003,5);
     mser(src_gray,contours);
+
+    cv::imshow("WINDOW2", src_gray);
 
     // Create Mask
     mask = cv::Mat::zeros( src_gray.size(), CV_8UC1 );
